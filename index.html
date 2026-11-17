@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Soudy – متجر المنظفات</title>
+<style>
+:root{--bg:#f2f8fb;--card:#fff;--text:#12303d;--muted:#66808c;--accent:#0a8fb8;--accent2:#e8f6fb;--line:#d8e6ec;--ok:#1a9c5b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1a20;--card:#162830;--text:#e6f2f6;--muted:#8fa9b4;--accent:#3cb8de;--accent2:#1b3640;--line:#27424d}}
+:root[data-theme="dark"]{--bg:#0e1a20;--card:#162830;--text:#e6f2f6;--muted:#8fa9b4;--accent:#3cb8de;--accent2:#1b3640;--line:#27424d}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,'Segoe UI',Tahoma,Arial,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.logo{font-size:1.6rem;font-weight:800;color:var(--accent);letter-spacing:.02em;line-height:1}
+.tag{font-size:.75rem;color:var(--muted);margin-top:3px}.slogan{font-size:.8rem;color:var(--accent);font-weight:700;margin-top:2px}
+.hbtns{display:flex;gap:8px}
+.pill{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-weight:600}
+.pill.main{background:var(--accent);color:#fff;border-color:var(--accent)}
+.wrap{max-width:980px;margin:0 auto;padding:0 14px}
+.search{margin:16px 0 10px}
+.search input{width:100%;padding:14px 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);outline:none;font-size:1rem}
+.search input:focus{border-color:var(--accent)}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px}
+.tab{white-space:nowrap;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px;font-size:.85rem}
+.tab.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;padding-bottom:60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.img{aspect-ratio:1;background:var(--accent2) center/cover;display:flex;align-items:center;justify-content:center;font-size:3.2rem}
+.info{padding:10px 12px 12px;display:flex;flex-direction:column;gap:4px;flex:1}
+.name{font-weight:700;font-size:.92rem}
+.cat{font-size:.75rem;color:var(--muted)}
+.price{font-weight:800;color:var(--accent);margin-top:auto}
+.addb{margin-top:6px;border:0;border-radius:10px;background:var(--accent);color:#fff;padding:9px;font-weight:700}
+.addb.alt{background:var(--accent2);color:var(--accent)}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0}
+.adminbar{background:#fff3cd;color:#4a3b00;border-radius:12px;padding:10px 12px;margin:6px 0 10px;display:none;flex-wrap:wrap;gap:8px;align-items:center}
+.adminbar.on{display:flex}
+.adminbar b{margin-inline-end:auto}
+.adminbar button{border:0;border-radius:999px;padding:7px 13px;font-weight:700;background:#fff;color:#4a3b00}
+.adminbar button.go{background:#4a3b00;color:#fff}
+#overlay .back{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:20;display:flex;align-items:flex-end;justify-content:center}
+#overlay .sheet{background:var(--card);width:min(100%,520px);max-height:92vh;overflow:auto;border-radius:18px 18px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+@media(min-width:600px){#overlay .back{align-items:center}#overlay .sheet{border-radius:18px}}
+.sheet h2{margin:0 0 12px;font-size:1.15rem}
+.sheet label{display:block;font-size:.8rem;color:var(--muted);margin:10px 0 4px}
+.sheet input,.sheet select,.sheet textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.row .n{flex:1;font-size:.9rem}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--card);font-weight:700}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:1.05rem;margin:12px 0 4px}
+.acts{display:flex;gap:8px;margin-top:14px}
+.acts button{flex:1;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--card);font-weight:700}
+.acts button.p{background:var(--accent);color:#fff;border-color:var(--accent)}
+.acts button.wa{background:#25d366;color:#fff;border-color:#25d366}
+.acts button.d{color:#c0392b}
+.link{background:none;border:0;color:var(--accent);text-decoration:underline;padding:6px 0;font-size:.85rem}
+.msg{color:#c0392b;font-size:.85rem;margin-top:8px;min-height:1em}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#12303d;color:#fff;padding:10px 16px;border-radius:999px;font-size:.85rem;z-index:30;display:none;max-width:90vw;text-align:center}
+</style>
+<style>artifact-sync,artifact-local{display:contents}</style></head>
+<body>
+<div id="app"></div>
+<div id="overlay"></div>
+<div id="toast"></div>
+
+<script id="store-data" type="application/json">{"hash": "30e7cfd6d9283fa634f1db1446bb8a9d07fe721cf4ab14451105ac712b8abd41", "items": [{"id": "i1", "name": "Liquid Laundry Detergent 3L", "price": 185, "cat": "Laundry", "img": ""}, {"id": "i2", "name": "Dishwashing Liquid 750ml", "price": 45, "cat": "Dishes", "img": ""}, {"id": "i3", "name": "Floor Cleaner Lavender 1L", "price": 60, "cat": "Surfaces", "img": ""}, {"id": "i4", "name": "Bleach 1L", "price": 35, "cat": "Surfaces", "img": ""}, {"id": "i5", "name": "Fabric Softener 2L", "price": 95, "cat": "Laundry", "img": ""}, {"id": "i6", "name": "Bathroom Cleaner 750ml", "price": 55, "cat": "Bathroom", "img": ""}]}</script>
+
+<script>
+const WA='201064435030';
+const CATS=['Laundry','Dishes','Surfaces','Bathroom','Other'];
+const ICON={Laundry:'🧺',Dishes:'🍽️',Surfaces:'🧽',Bathroom:'🚿',Other:'🧴'};
+const T={
+en:{dl1:'items.json downloaded ✅',dl2:'Now upload it to GitHub: open your repository → Add file → Upload files → choose items.json (it replaces the old one) → Commit changes. The shop updates in 1–2 minutes.',slogan:'Made by love ❤️',tag:'Detergents & cleaning supplies',search:'Search products…',all:'All',add:'Add to cart',cart:'Cart',total:'Total',none:'Nothing found.',emptyCart:'Your cart is empty.',name:'Your name',loc:'Your location / address',gps:'📍 Use my location',order:'Order on WhatsApp',need:'Please enter your name and location.',cur:'EGP',mgr:'Manager mode',addItem:'+ Add item',publish:'Download items.json',exit:'Exit',unsaved:'Unsaved changes',pass:'Change passcode',newpass:'New passcode (min 4 characters)',save:'Save',del:'Delete',cancel:'Cancel',price:'Price',pname:'Product name',category:'Category',photo:'Photo (optional)',sent:'WhatsApp should open. If not, tap here:',close:'Close',editItem:'Edit item',newItem:'New item',saving:'Publishing…',noaccess:'To save changes, open this page from your claude.ai account as the owner.',clear:'Clear cart',lang:'العربية',c:{Laundry:'Laundry',Dishes:'Dishes',Surfaces:'Surfaces & floors',Bathroom:'Bathroom',Other:'Other'},hi:'New order – Soudy',nm:'Name',lc:'Location'},
+ar:{dl1:'تم تنزيل items.json ✅',dl2:'دلوقتي ارفعه على GitHub: افتح المستودع ← Add file ← Upload files ← اختار items.json (هيستبدل القديم) ← Commit changes. المتجر بيتحدّث بعد دقيقة أو دقيقتين.',slogan:'صُنع بحُب ❤️',tag:'منظفات ومستلزمات التنظيف',search:'ابحث عن منتج…',all:'الكل',add:'أضف للسلة',cart:'السلة',total:'الإجمالي',none:'لا توجد نتائج.',emptyCart:'السلة فارغة.',name:'اسمك',loc:'موقعك / عنوانك',gps:'📍 استخدم موقعي',order:'اطلب عبر واتساب',need:'من فضلك اكتب اسمك وموقعك.',cur:'ج.م',mgr:'وضع المدير',addItem:'+ إضافة منتج',publish:'تنزيل items.json',exit:'خروج',unsaved:'تغييرات غير محفوظة',pass:'تغيير الرمز',newpass:'رمز سري جديد (4 أحرف على الأقل)',save:'حفظ',del:'حذف',cancel:'إلغاء',price:'السعر',pname:'اسم المنتج',category:'القسم',photo:'صورة (اختياري)',sent:'يجب أن يفتح واتساب. إن لم يفتح اضغط هنا:',close:'إغلاق',editItem:'تعديل منتج',newItem:'منتج جديد',saving:'جاري النشر…',noaccess:'لحفظ التغييرات افتح الصفحة من حسابك على claude.ai كمالك.',clear:'تفريغ السلة',lang:'English',c:{Laundry:'غسيل الملابس',Dishes:'الأطباق',Surfaces:'الأسطح والأرضيات',Bathroom:'الحمام',Other:'أخرى'},hi:'طلب جديد – Soudy',nm:'الاسم',lc:'الموقع'}
+};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+const DATA=JSON.parse($('store-data').textContent);
+let items=DATA.items,hash=DATA.hash,admin=false,dirty=false,cat='All',q='';
+let lang=lsGet('soudy.lang')==='en'?'en':'ar';
+let cart={};try{cart=JSON.parse(lsGet('soudy.cart')||'{}')}catch(e){}
+const t=()=>T[lang];
+const money=n=>Number(n).toFixed(n%1?2:0)+' '+t().cur;
+function toast(s){const e=$('toast');e.textContent=s;e.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(()=>e.style.display='none',3500)}
+function saveCart(){lsSet('soudy.cart',JSON.stringify(cart))}
+async function sha(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+
+function skeleton(){
+  document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  $('app').innerHTML=`
+  <header><div><div class="logo">Soudy</div><div class="slogan">${t().slogan}</div><div class="tag">${t().tag}</div></div>
+  <div class="hbtns"><button class="pill" id="langb">${t().lang}</button><button class="pill main" id="cartb"></button></div></header>
+  <div class="wrap">
+    <div class="search"><input id="q" type="search" placeholder="${t().search}" autocomplete="off" value="${esc(q)}"></div>
+    <div class="adminbar" id="adminbar"></div>
+    <div class="tabs" id="tabs"></div>
+    <div class="grid" id="grid"></div>
+  </div>`;
+  $('langb').onclick=()=>{lang=lang==='en'?'ar':'en';lsSet('soudy.lang',lang);skeleton();render()};
+  $('cartb').onclick=openCart;
+  $('q').addEventListener('input',e=>{q=e.target.value;renderGrid()});
+  $('q').addEventListener('keydown',async e=>{
+    if(e.key!=='Enter'||!q.trim())return;
+    try{if(await sha(q.trim())===hash){admin=true;q='';$('q').value='';render();toast(t().mgr)}}catch(err){}
+  });
+}
+function render(){renderBar();renderTabs();renderGrid();renderCartBtn()}
+function cartCount(){return Object.values(cart).reduce((a,b)=>a+b,0)}
+function renderCartBtn(){$('cartb').textContent='🛒 '+t().cart+' ('+cartCount()+')'}
+function renderBar(){
+  const b=$('adminbar');b.classList.toggle('on',admin);
+  if(!admin){b.innerHTML='';return}
+  b.innerHTML=`<b>🔑 ${t().mgr}${dirty?' · '+t().unsaved:''}</b>
+  <button id="a1">${t().addItem}</button><button id="a2">${t().pass}</button>
+  <button class="go" id="a3">${t().publish}</button><button id="a4">${t().exit}</button>`;
+  $('a1').onclick=()=>openItem();$('a2').onclick=openPass;$('a3').onclick=publish;$('a4').onclick=()=>{admin=false;render()};
+}
+function renderTabs(){
+  const cats=['All',...CATS.filter(c=>items.some(i=>i.cat===c))];
+  if(!cats.includes(cat))cat='All';
+  $('tabs').innerHTML=cats.map(c=>`<button class="tab ${c===cat?'on':''}" data-c="${c}">${c==='All'?t().all:t().c[c]}</button>`).join('');
+  $('tabs').onclick=e=>{if(e.target.dataset.c){cat=e.target.dataset.c;renderTabs();renderGrid()}};
+}
+function renderGrid(){
+  const s=q.trim().toLowerCase();
+  const list=items.filter(i=>(cat==='All'||i.cat===cat)&&(!s||(i.name+' '+i.cat+' '+t().c[i.cat]).toLowerCase().includes(s)));
+  $('grid').innerHTML=list.length?list.map(i=>`<div class="card">
+    <div class="img" style="${i.img?`background-image:url(${i.img})`:''}">${i.img?'':ICON[i.cat]||'🧴'}</div>
+    <div class="info"><div class="name">${esc(i.name)}</div><div class="cat">${t().c[i.cat]||''}</div><div class="price">${money(i.price)}</div>
+    <button class="addb ${cart[i.id]?'alt':''}" data-a="${i.id}">${cart[i.id]?'✓ '+cart[i.id]+' · +1':t().add}</button>
+    ${admin?`<button class="addb alt" data-e="${i.id}">✏️ ${t().editItem}</button>`:''}</div></div>`).join(''):`<div class="empty">${t().none}</div>`;
+  $('grid').onclick=e=>{
+    const a=e.target.dataset.a,ed=e.target.dataset.e;
+    if(a){cart[a]=(cart[a]||0)+1;saveCart();renderCartBtn();renderGrid();toast('✓ '+t().cart)}
+    if(ed)openItem(ed);
+  };
+}
+function sheet(html){$('overlay').innerHTML=`<div class="back" id="bk"><div class="sheet">${html}</div></div>`;$('bk').onclick=e=>{if(e.target.id==='bk')closeSheet()}}
+function closeSheet(){$('overlay').innerHTML=''}
+
+function openCart(){
+  const lines=Object.entries(cart).map(([id,n])=>({it:items.find(i=>i.id===id),n})).filter(l=>l.it&&l.n>0);
+  if(!lines.length){sheet(`<h2>🛒 ${t().cart}</h2><p>${t().emptyCart}</p><div class="acts"><button id="cl">${t().close}</button></div>`);$('cl').onclick=closeSheet;return}
+  const total=lines.reduce((a,l)=>a+l.it.price*l.n,0);
+  sheet(`<h2>🛒 ${t().cart}</h2>
+  ${lines.map(l=>`<div class="row"><div class="n">${esc(l.it.name)}<br><small>${money(l.it.price)}</small></div>
+  <div class="qty"><button data-m="${l.it.id}">−</button><b>${l.n}</b><button data-p="${l.it.id}">+</button></div></div>`).join('')}
+  <div class="tot"><span>${t().total}</span><span>${money(total)}</span></div>
+  <label>${t().name}</label><input id="cn" value="${esc(lsGet('soudy.name')||'')}">
+  <label>${t().loc}</label><textarea id="cloc" rows="2">${esc(lsGet('soudy.loc')||'')}</textarea>
+  <button class="link" id="gps">${t().gps}</button>
+  <div class="msg" id="msg"></div>
+  <div class="acts"><button id="cl">${t().close}</button><button class="wa" id="ord">${t().order}</button></div>
+  <button class="link" id="clr">${t().clear}</button>`);
+  $('cl').onclick=closeSheet;
+  $('clr').onclick=()=>{cart={};saveCart();renderCartBtn();renderGrid();closeSheet()};
+  $('overlay').onclick=e=>{
+    const m=e.target.dataset.m,p=e.target.dataset.p;
+    if(m||p){const id=m||p;cart[id]=(cart[id]||0)+(p?1:-1);if(cart[id]<=0)delete cart[id];saveCart();renderCartBtn();renderGrid();openCart()}
+  };
+  $('gps').onclick=()=>{
+    if(!navigator.geolocation){$('msg').textContent='GPS not available';return}
+    navigator.geolocation.getCurrentPosition(p=>{const l='https://maps.google.com/?q='+p.coords.latitude+','+p.coords.longitude;const f=$('cloc');f.value=(f.value?f.value+'\n':'')+l},()=>{$('msg').textContent='GPS not available'});
+  };
+  $('ord').onclick=()=>{
+    const nm=$('cn').value.trim(),lc=$('cloc').value.trim();
+    if(!nm||!lc){$('msg').textContent=t().need;return}
+    lsSet('soudy.name',nm);lsSet('soudy.loc',lc);
+    const txt=t().hi+'\n\n'+lines.map(l=>'• '+l.n+' × '+l.it.name+' — '+money(l.it.price*l.n)).join('\n')+'\n\n'+t().total+': '+money(total)+'\n'+t().nm+': '+nm+'\n'+t().lc+': '+lc;
+    const url='https://wa.me/'+WA+'?text='+encodeURIComponent(txt);
+    cart={};saveCart();renderCartBtn();renderGrid();
+    sheet(`<h2>✅</h2><p>${t().sent}</p><p><a href="${url}" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700">wa.me/${WA}</a></p><div class="acts"><button id="cl">${t().close}</button></div>`);
+    $('cl').onclick=closeSheet;
+    try{window.open(url,'_blank','noopener')}catch(e){}
+  };
+}
+
+function openItem(id){
+  const it=id?items.find(i=>i.id===id):null;
+  sheet(`<h2>${it?t().editItem:t().newItem}</h2>
+  <label>${t().pname}</label><input id="fn" value="${it?esc(it.name):''}">
+  <label>${t().price} (${t().cur})</label><input id="fp" type="number" min="0" step="0.5" value="${it?it.price:''}">
+  <label>${t().category}</label><select id="fc">${CATS.map(c=>`<option value="${c}" ${it&&it.cat===c?'selected':''}>${t().c[c]}</option>`).join('')}</select>
+  <label>${t().photo}</label><input id="ff" type="file" accept="image/*">
+  <div class="msg" id="msg"></div>
+  <div class="acts"><button id="cl">${t().cancel}</button>${it?`<button class="d" id="dl">${t().del}</button>`:''}<button class="p" id="sv">${t().save}</button></div>`);
+  $('cl').onclick=closeSheet;
+  if(it)$('dl').onclick=()=>{items=items.filter(i=>i.id!==id);delete cart[id];saveCart();dirty=true;closeSheet();render()};
+  $('sv').onclick=async()=>{
+    const name=$('fn').value.trim();if(!name){$('msg').textContent=t().pname;return}
+    const img=await shrink($('ff').files[0]);
+    const rec={id:it?it.id:'i'+Date.now(),name,price:parseFloat($('fp').value)||0,cat:$('fc').value,img:img||(it?it.img:'')};
+    if(it)items=items.map(i=>i.id===it.id?rec:i);else items.unshift(rec);
+    dirty=true;closeSheet();render();
+  };
+}
+function shrink(file){return new Promise(res=>{
+  if(!file)return res('');
+  const r=new FileReader();
+  r.onload=()=>{const im=new Image();im.onload=()=>{const s=320/Math.max(im.width,im.height,320);const c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.7))};im.onerror=()=>res('');im.src=r.result};
+  r.onerror=()=>res('');r.readAsDataURL(file)})}
+function openPass(){
+  sheet(`<h2>🔑 ${t().pass}</h2><label>${t().newpass}</label><input id="np" type="text" autocomplete="off"><div class="msg" id="msg"></div>
+  <div class="acts"><button id="cl">${t().cancel}</button><button class="p" id="sv">${t().save}</button></div>`);
+  $('cl').onclick=closeSheet;
+  $('sv').onclick=async()=>{const v=$('np').value.trim();if(v.length<4){$('msg').textContent=t().newpass;return}hash=await sha(v);dirty=true;closeSheet();render();toast('✓ '+t().publish)};
+}
+
+function publish(){
+  const data=JSON.stringify({hash,items},null,1);
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));
+  a.download='items.json';document.body.appendChild(a);a.click();a.remove();
+  dirty=false;renderBar();
+  sheet(`<h2>${t().dl1}</h2><p>${t().dl2}</p><div class="acts"><button class="p" id="cl">${t().close}</button></div>`);
+  $('cl').onclick=closeSheet;
+}
+async function loadRemote(){
+  try{
+    const r=await fetch('items.json?v='+Date.now(),{cache:'no-store'});
+    if(!r.ok)return;
+    const j=await r.json();
+    if(Array.isArray(j.items)){items=j.items;if(j.hash)hash=j.hash}
+  }catch(e){}
+}
+skeleton();renderGrid();
+loadRemote().then(render);
+
+</script>
+
+
+</body></html>

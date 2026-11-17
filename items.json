@@ -1,0 +1,47 @@
+{
+ "hash": "30e7cfd6d9283fa634f1db1446bb8a9d07fe721cf4ab14451105ac712b8abd41",
+ "items": [
+  {
+   "id": "i1",
+   "name": "Liquid Laundry Detergent 3L",
+   "price": 185,
+   "cat": "Laundry",
+   "img": ""
+  },
+  {
+   "id": "i2",
+   "name": "Dishwashing Liquid 750ml",
+   "price": 45,
+   "cat": "Dishes",
+   "img": ""
+  },
+  {
+   "id": "i3",
+   "name": "Floor Cleaner Lavender 1L",
+   "price": 60,
+   "cat": "Surfaces",
+   "img": ""
+  },
+  {
+   "id": "i4",
+   "name": "Bleach 1L",
+   "price": 35,
+   "cat": "Surfaces",
+   "img": ""
+  },
+  {
+   "id": "i5",
+   "name": "Fabric Softener 2L",
+   "price": 95,
+   "cat": "Laundry",
+   "img": ""
+  },
+  {
+   "id": "i6",
+   "name": "Bathroom Cleaner 750ml",
+   "price": 55,
+   "cat": "Bathroom",
+   "img": ""
+  }
+ ]
+}
